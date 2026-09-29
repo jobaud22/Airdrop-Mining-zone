@@ -131,7 +131,6 @@ footer {
 © 2026 Airdrop Mining Zone
 </footer>
 
-
 <script>
 
 const SUPABASE_URL =
@@ -170,4 +169,108 @@ async function loadAirdrops() {
         loading.style.display = "none";
 
         if (airdrops.length === 0) {
-           
+
+            container.innerHTML =
+                '<div class="card"><h2>No Airdrops Yet</h2><p class="info">No airdrops have been posted yet.</p></div>';
+
+            return;
+        }
+
+        container.innerHTML = "";
+
+        airdrops.forEach(function(airdrop) {
+
+            const card = document.createElement("div");
+
+            card.className = "card";
+
+            card.innerHTML = `
+                <h2>🚀 ${escapeHTML(airdrop.name || "")}</h2>
+
+                <div class="info">
+                    📝 ${escapeHTML(airdrop.description || "No description")}
+                </div>
+
+                <div class="info">
+                    ⛏️ <b>Mining Time:</b>
+                    ${escapeHTML(airdrop.mining_time || "Not specified")}
+                </div>
+
+                <div class="info">
+                    🎁 <b>Reward:</b>
+                    ${escapeHTML(airdrop.reward || "Not specified")}
+                </div>
+
+                <div class="info">
+                    💰 <b>Minimum Withdraw:</b>
+                    ${escapeHTML(airdrop.min_withdraw || "Not specified")}
+                </div>
+
+                <a
+                    class="join"
+                    href="${safeURL(airdrop.join_link)}"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    JOIN AIRDROP
+                </a>
+            `;
+
+            container.appendChild(card);
+
+        });
+
+    } catch (err) {
+
+        console.error("Supabase Error:", err);
+
+        loading.style.display = "none";
+
+        error.innerHTML =
+            "❌ Airdrops load করা যায়নি।<br><small>" +
+            escapeHTML(err.message) +
+            "</small>";
+
+    }
+
+}
+
+
+function escapeHTML(value) {
+
+    return String(value)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+
+}
+
+
+function safeURL(url) {
+
+    try {
+
+        const parsed = new URL(url);
+
+        if (
+            parsed.protocol === "http:" ||
+            parsed.protocol === "https:"
+        ) {
+            return parsed.href;
+        }
+
+    } catch (e) {}
+
+    return "#";
+
+}
+
+
+loadAirdrops();
+
+</script>
+
+</body>
+</html>
