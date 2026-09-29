@@ -1,12 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Airdrop Mining Zone</title>
 
+<!-- ========================= -->
+<!--       ADSTERRA CODE       -->
+<!-- ========================= -->
+
+<script
+src="https://pl31571592.profitableratecpmnetwork.com/19/3d/7c/193d7c7412c3023da5f25f650b3ec909.js">
+</script>
+
+
 <style>
+
 * {
     box-sizing: border-box;
 }
@@ -14,224 +26,655 @@
 body {
     margin: 0;
     font-family: Arial, sans-serif;
-    background: #0f0f0f;
+    background: #0b0f14;
     color: white;
 }
 
+
+/* =========================
+   HEADER
+========================= */
+
 header {
+    padding: 30px 15px;
     text-align: center;
-    padding: 25px 15px;
-    background: #151515;
+    background: linear-gradient(
+        135deg,
+        #111827,
+        #0b0f14
+    );
+    border-bottom: 1px solid #263241;
 }
 
 header h1 {
     margin: 0;
-    font-size: 28px;
+    font-size: 30px;
 }
 
 header p {
-    color: #aaa;
-    margin-bottom: 0;
+    margin: 10px 0 0;
+    color: #9ca3af;
 }
+
+
+/* =========================
+   MAIN
+========================= */
 
 .container {
     width: 94%;
-    max-width: 700px;
-    margin: auto;
+    max-width: 1000px;
+    margin: 25px auto;
 }
 
-.ad-box {
-    text-align: center;
-    margin: 20px 0;
-    min-height: 100px;
-}
 
-.card {
-    background: #1c1c1c;
-    border: 1px solid #333;
-    border-radius: 15px;
-    padding: 20px;
-    margin: 18px 0;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.35);
-}
+/* =========================
+   POST BUTTON
+========================= */
 
-.card h2 {
-    margin-top: 0;
-    font-size: 22px;
-}
-
-.info {
-    margin: 10px 0;
-    color: #ddd;
-    line-height: 1.5;
-}
-
-.description {
-    color: #ccc;
-    line-height: 1.6;
-    margin: 12px 0;
-}
-
-.join {
+.post-button {
     display: block;
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto 25px;
+
+    padding: 14px;
+
     text-align: center;
+    text-decoration: none;
+
     background: #00c853;
     color: white;
-    text-decoration: none;
-    padding: 13px;
+
     border-radius: 10px;
+
+    font-size: 17px;
     font-weight: bold;
-    margin-top: 15px;
+
+    transition: 0.2s;
 }
 
-.join:hover {
-    background: #00a844;
+.post-button:hover {
+    background: #00e676;
+    transform: translateY(-2px);
 }
+
+
+/* =========================
+   SEARCH
+========================= */
+
+.search-box {
+    margin-bottom: 25px;
+}
+
+.search-box input {
+
+    width: 100%;
+
+    padding: 15px;
+
+    border-radius: 10px;
+
+    border: 1px solid #303b49;
+
+    background: #111820;
+
+    color: white;
+
+    font-size: 16px;
+
+    outline: none;
+}
+
+.search-box input:focus {
+    border-color: #00c853;
+}
+
+
+/* =========================
+   LOADING
+========================= */
 
 #loading {
+
     text-align: center;
-    color: #aaa;
+
+    color: #9ca3af;
+
     padding: 30px;
 }
 
+
+/* =========================
+   ERROR
+========================= */
+
 #error {
+
+    display: none;
+
+    padding: 15px;
+
+    margin-bottom: 20px;
+
+    border-radius: 10px;
+
+    background: #351515;
+
+    color: #ff6b6b;
+
     text-align: center;
-    color: #ff5252;
-    padding: 20px;
+
     word-break: break-word;
 }
 
+
+/* =========================
+   EMPTY
+========================= */
+
 #empty {
+
+    display: none;
+
     text-align: center;
-    color: #aaa;
-    padding: 30px;
+
+    padding: 40px 15px;
+
+    color: #9ca3af;
 }
 
-footer {
-    text-align: center;
-    padding: 30px;
-    color: #777;
+
+/* =========================
+   AIRDROP GRID
+========================= */
+
+#airdrops {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            auto-fit,
+            minmax(280px, 1fr)
+        );
+
+    gap: 18px;
 }
+
+
+/* =========================
+   AIRDROP CARD
+========================= */
+
+.card {
+
+    background: #121820;
+
+    border: 1px solid #273342;
+
+    border-radius: 15px;
+
+    padding: 20px;
+
+    transition: 0.2s;
+}
+
+.card:hover {
+
+    transform: translateY(-3px);
+
+    border-color: #00c853;
+}
+
+
+/* =========================
+   CARD TITLE
+========================= */
+
+.card h2 {
+
+    margin: 0 0 12px;
+
+    font-size: 22px;
+
+    color: #00e676;
+
+    word-break: break-word;
+}
+
+
+/* =========================
+   DESCRIPTION
+========================= */
+
+.description {
+
+    color: #c5ccd5;
+
+    line-height: 1.5;
+
+    margin-bottom: 18px;
+
+    word-break: break-word;
+}
+
+
+/* =========================
+   INFO
+========================= */
+
+.info {
+
+    display: grid;
+
+    gap: 9px;
+
+    margin-bottom: 18px;
+}
+
+.info-row {
+
+    padding: 10px;
+
+    background: #0d131a;
+
+    border-radius: 8px;
+
+    color: #dbe2ea;
+}
+
+.info-row strong {
+
+    color: #00e676;
+}
+
+
+/* =========================
+   JOIN BUTTON
+========================= */
+
+.join-button {
+
+    display: block;
+
+    text-align: center;
+
+    text-decoration: none;
+
+    background: #00c853;
+
+    color: white;
+
+    padding: 13px;
+
+    border-radius: 9px;
+
+    font-weight: bold;
+
+    transition: 0.2s;
+}
+
+.join-button:hover {
+
+    background: #00e676;
+
+    transform: translateY(-1px);
+}
+
+
+/* =========================
+   NO RESULTS
+========================= */
+
+#noResults {
+
+    display: none;
+
+    text-align: center;
+
+    padding: 30px;
+
+    color: #9ca3af;
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+
+    text-align: center;
+
+    padding: 30px 15px;
+
+    margin-top: 40px;
+
+    border-top: 1px solid #202a35;
+
+    color: #737d89;
+
+    font-size: 14px;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 600px) {
+
+    header h1 {
+        font-size: 25px;
+    }
+
+    .container {
+        width: 92%;
+    }
+
+    #airdrops {
+        grid-template-columns: 1fr;
+    }
+
+}
+
 </style>
+
 </head>
+
 
 <body>
 
+
+<!-- =========================
+     HEADER
+========================= -->
+
 <header>
-    <h1>🚀 Airdrop Mining Zone</h1>
-    <p>Free Airdrop & Mining Projects</p>
+
+    <h1>
+        🚀 Airdrop Mining Zone
+    </h1>
+
+    <p>
+        Free Airdrop & Mining Projects
+    </p>
+
 </header>
+
+
 
 <div class="container">
 
-    <!-- Adsterra -->
-    <div class="ad-box">
-        <script src="https://pl31571592.profitableratecpmnetwork.com/19/3d/7c/193d7c7412c3023da5f25f650b3ec909.js"></script>
+
+    <!-- =========================
+         POST AIRDROP
+    ========================= -->
+
+    <a
+        class="post-button"
+        href="post.html"
+    >
+        📝 POST NEW AIRDROP
+    </a>
+
+
+
+    <!-- =========================
+         SEARCH
+    ========================= -->
+
+    <div class="search-box">
+
+        <input
+            id="searchInput"
+            type="text"
+            placeholder="🔎 Search Airdrop..."
+            oninput="searchAirdrops()"
+        >
+
     </div>
 
-    <!-- Loading -->
-    <div id="loading">
-        ⏳ Loading Airdrops...
-    </div>
 
-    <!-- Error -->
+
+    <!-- =========================
+         ERROR
+    ========================= -->
+
     <div id="error"></div>
 
-    <!-- Airdrops -->
+
+
+    <!-- =========================
+         LOADING
+    ========================= -->
+
+    <div id="loading">
+
+        ⏳ Loading Airdrops...
+
+    </div>
+
+
+
+    <!-- =========================
+         EMPTY
+    ========================= -->
+
+    <div id="empty">
+
+        📭 এখনো কোনো Airdrop পোস্ট করা হয়নি।
+
+    </div>
+
+
+
+    <!-- =========================
+         SEARCH EMPTY
+    ========================= -->
+
+    <div id="noResults">
+
+        🔎 কোনো Airdrop পাওয়া যায়নি।
+
+    </div>
+
+
+
+    <!-- =========================
+         AIRDROP LIST
+    ========================= -->
+
     <div id="airdrops"></div>
 
-    <!-- Empty -->
-    <div id="empty"></div>
 
 </div>
 
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
 <footer>
-    © 2026 Airdrop Mining Zone
+
+    🚀 Airdrop Mining Zone
+
+    <br><br>
+
+    Free Airdrop & Mining Projects
+
 </footer>
+
+
 
 <script>
 
+
+/* =========================
+   SUPABASE
+========================= */
+
 const SUPABASE_URL =
 "https://zuqcvankzuofzzpdrycq.supabase.co";
+
 
 const SUPABASE_KEY =
 "sb_publishable_T_q8uZXUsSE2zidrfoYraw_KEqa5G7X";
 
 
+/* Store all data */
+
+let allAirdrops = [];
+
+
+
+/* =========================
+   ESCAPE HTML
+========================= */
+
 function escapeHTML(value) {
 
-    if (value === null || value === undefined) {
+    if (
+        value === null ||
+        value === undefined
+    ) {
+
         return "";
+
     }
 
     return String(value)
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&#039;");
+
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+
+        .replace(
+            /</g,
+            "&lt;"
+        )
+
+        .replace(
+            />/g,
+            "&gt;"
+        )
+
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+
+        .replace(
+            /'/g,
+            "&#039;"
+        );
 }
 
 
-function safeURL(value) {
 
-    if (!value) {
-        return "#";
-    }
+/* =========================
+   SAFE URL
+========================= */
+
+function safeURL(url) {
 
     try {
 
-        const url = new URL(value);
+        const parsed =
+            new URL(url);
 
         if (
-            url.protocol === "http:" ||
-            url.protocol === "https:"
+            parsed.protocol === "http:" ||
+            parsed.protocol === "https:"
         ) {
-            return url.href;
+
+            return parsed.href;
+
         }
 
     } catch (error) {
+
         return "#";
+
     }
 
     return "#";
 }
 
 
+
+/* =========================
+   LOAD AIRDROPS
+========================= */
+
 async function loadAirdrops() {
 
     const loading =
-        document.getElementById("loading");
+        document.getElementById(
+            "loading"
+        );
 
     const errorBox =
-        document.getElementById("error");
+        document.getElementById(
+            "error"
+        );
 
-    const airdropsBox =
-        document.getElementById("airdrops");
+    const empty =
+        document.getElementById(
+            "empty"
+        );
 
-    const emptyBox =
-        document.getElementById("empty");
+    const container =
+        document.getElementById(
+            "airdrops"
+        );
 
 
-    loading.style.display = "block";
-    errorBox.innerHTML = "";
-    airdropsBox.innerHTML = "";
-    emptyBox.innerHTML = "";
+    loading.style.display =
+        "block";
+
+
+    errorBox.style.display =
+        "none";
+
+
+    empty.style.display =
+        "none";
+
+
+    container.innerHTML =
+        "";
 
 
     try {
 
-        const response = await fetch(
-            `${SUPABASE_URL}/rest/v1/airdrops?select=*`,
-            {
-                method: "GET",
 
-                headers: {
-                    "apikey": SUPABASE_KEY,
-                    "Authorization": `Bearer ${SUPABASE_KEY}`
+        const response =
+            await fetch(
+
+                `${SUPABASE_URL}/rest/v1/airdrops?select=*`,
+
+                {
+
+                    method: "GET",
+
+                    headers: {
+
+                        "apikey":
+                            SUPABASE_KEY,
+
+                        "Authorization":
+                            `Bearer ${SUPABASE_KEY}`
+
+                    }
+
                 }
-            }
-        );
+
+            );
 
 
         const responseText =
@@ -240,164 +683,334 @@ async function loadAirdrops() {
 
         if (!response.ok) {
 
-            throw new Error(responseText);
-
-        }
-
-
-        let airdrops = [];
-
-        try {
-
-            airdrops = JSON.parse(responseText);
-
-        } catch (jsonError) {
-
             throw new Error(
-                "Supabase থেকে সঠিক JSON পাওয়া যায়নি।"
+                responseText
             );
 
         }
 
 
-        loading.style.display = "none";
+        const data =
+            JSON.parse(
+                responseText
+            );
+
+
+        allAirdrops =
+            data;
+
+
+        loading.style.display =
+            "none";
 
 
         if (
-            !Array.isArray(airdrops) ||
-            airdrops.length === 0
+            !Array.isArray(data) ||
+            data.length === 0
         ) {
 
-            emptyBox.innerHTML =
-                "📭 এখনো কোনো Airdrop পোস্ট করা হয়নি।";
+            empty.style.display =
+                "block";
 
             return;
+
         }
 
 
-        airdrops.forEach(function(airdrop) {
-
-            const card =
-                document.createElement("div");
-
-            card.className = "card";
-
-
-            const name =
-                escapeHTML(airdrop.name);
-
-            const description =
-                escapeHTML(airdrop.description);
-
-            const miningTime =
-                escapeHTML(airdrop.mining_time);
-
-            const reward =
-                escapeHTML(airdrop.reward);
-
-            const minWithdraw =
-                escapeHTML(airdrop.min_withdraw);
-
-            const joinLink =
-                safeURL(airdrop.join_link);
-
-
-            card.innerHTML = `
-
-                <h2>🚀 ${name}</h2>
-
-                ${
-                    description
-                    ? `
-                    <div class="description">
-                        ${description}
-                    </div>
-                    `
-                    : ""
-                }
-
-                ${
-                    miningTime
-                    ? `
-                    <div class="info">
-                        ⏱️ <strong>Mining Time:</strong>
-                        ${miningTime}
-                    </div>
-                    `
-                    : ""
-                }
-
-                ${
-                    reward
-                    ? `
-                    <div class="info">
-                        🎁 <strong>Reward:</strong>
-                        ${reward}
-                    </div>
-                    `
-                    : ""
-                }
-
-                ${
-                    minWithdraw
-                    ? `
-                    <div class="info">
-                        💰 <strong>Minimum Withdraw:</strong>
-                        ${minWithdraw}
-                    </div>
-                    `
-                    : ""
-                }
-
-                ${
-                    joinLink !== "#"
-                    ? `
-                    <a
-                        class="join"
-                        href="${joinLink}"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        🚀 JOIN AIRDROP
-                    </a>
-                    `
-                    : ""
-                }
-
-            `;
-
-
-            airdropsBox.appendChild(card);
-
-        });
+        renderAirdrops(data);
 
 
     } catch (error) {
 
-        console.error(
-            "Airdrops Load Error:",
-            error
-        );
+
+        loading.style.display =
+            "none";
 
 
-        loading.style.display = "none";
+        errorBox.style.display =
+            "block";
 
 
-        errorBox.innerHTML = `
-            ❌ Airdrops load করা যায়নি।<br><br>
-            <small>
-                ${escapeHTML(error.message)}
-            </small>
-        `;
+        errorBox.innerHTML =
+
+            "❌ Airdrop load করা যায়নি.<br><br>" +
+
+            escapeHTML(
+                error.message
+            );
+
+
+        console.error(error);
 
     }
 
 }
 
 
+
+/* =========================
+   RENDER AIRDROPS
+========================= */
+
+function renderAirdrops(data) {
+
+    const container =
+        document.getElementById(
+            "airdrops"
+        );
+
+
+    const noResults =
+        document.getElementById(
+            "noResults"
+        );
+
+
+    container.innerHTML =
+        "";
+
+
+    if (data.length === 0) {
+
+        noResults.style.display =
+            "block";
+
+        return;
+
+    }
+
+
+    noResults.style.display =
+        "none";
+
+
+    data.forEach(
+        function(airdrop) {
+
+
+            const name =
+                escapeHTML(
+                    airdrop.name
+                );
+
+
+            const description =
+                escapeHTML(
+
+                    airdrop.description ||
+
+                    "No description available."
+
+                );
+
+
+            const miningTime =
+                escapeHTML(
+
+                    airdrop.mining_time ||
+
+                    "Not specified"
+
+                );
+
+
+            const reward =
+                escapeHTML(
+
+                    airdrop.reward ||
+
+                    "Not specified"
+
+                );
+
+
+            const minWithdraw =
+                escapeHTML(
+
+                    airdrop.min_withdraw ||
+
+                    "Not specified"
+
+                );
+
+
+            const joinLink =
+                safeURL(
+                    airdrop.join_link
+                );
+
+
+            const card =
+                document.createElement(
+                    "div"
+                );
+
+
+            card.className =
+                "card";
+
+
+            card.innerHTML = `
+
+                <h2>
+                    🪙 ${name}
+                </h2>
+
+                <div class="description">
+                    ${description}
+                </div>
+
+                <div class="info">
+
+                    <div class="info-row">
+                        ⏱️
+                        <strong>
+                            Mining:
+                        </strong>
+                        ${miningTime}
+                    </div>
+
+
+                    <div class="info-row">
+                        🎁
+                        <strong>
+                            Reward:
+                        </strong>
+                        ${reward}
+                    </div>
+
+
+                    <div class="info-row">
+                        💰
+                        <strong>
+                            Min Withdraw:
+                        </strong>
+                        ${minWithdraw}
+                    </div>
+
+                </div>
+
+
+                <a
+                    class="join-button"
+                    href="${joinLink}"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    🚀 JOIN NOW
+                </a>
+
+            `;
+
+
+            container.appendChild(
+                card
+            );
+
+        }
+    );
+
+}
+
+
+
+/* =========================
+   SEARCH
+========================= */
+
+function searchAirdrops() {
+
+
+    const input =
+        document.getElementById(
+            "searchInput"
+        );
+
+
+    const keyword =
+        input.value
+            .trim()
+            .toLowerCase();
+
+
+    if (!keyword) {
+
+        renderAirdrops(
+            allAirdrops
+        );
+
+        return;
+
+    }
+
+
+    const filtered =
+        allAirdrops.filter(
+
+            function(airdrop) {
+
+
+                const name =
+                    String(
+                        airdrop.name || ""
+                    ).toLowerCase();
+
+
+                const description =
+                    String(
+                        airdrop.description || ""
+                    ).toLowerCase();
+
+
+                const reward =
+                    String(
+                        airdrop.reward || ""
+                    ).toLowerCase();
+
+
+                return (
+
+                    name.includes(
+                        keyword
+                    )
+
+                    ||
+
+                    description.includes(
+                        keyword
+                    )
+
+                    ||
+
+                    reward.includes(
+                        keyword
+                    )
+
+                );
+
+            }
+
+        );
+
+
+    renderAirdrops(
+        filtered
+    );
+
+}
+
+
+
+/* =========================
+   START
+========================= */
+
 loadAirdrops();
+
 
 </script>
 
+
 </body>
+
 </html>
