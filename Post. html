@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Post Airdrop</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #0f0f0f;
+    color: white;
+}
+
+.container {
+    width: 94%;
+    max-width: 600px;
+    margin: 40px auto;
+}
+
+h1 {
+    text-align: center;
+}
+
+.form-box {
+    background: #1c1c1c;
+    padding: 20px;
+    border-radius: 15px;
+    border: 1px solid #333;
+}
+
+label {
+    display: block;
+    margin-top: 15px;
+    margin-bottom: 7px;
+}
+
+input,
+textarea {
+    width: 100%;
+    padding: 13px;
+    border-radius: 8px;
+    border: 1px solid #444;
+    background: #111;
+    color: white;
+    font-size: 16px;
+}
+
+textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+button {
+    width: 100%;
+    margin-top: 20px;
+    padding: 14px;
+    border: none;
+    border-radius: 9px;
+    background: #00c853;
+    color: white;
+    font-size: 17px;
+    font-weight: bold;
+}
+
+button:disabled {
+    opacity: 0.6;
+}
+
+#message {
+    text-align: center;
+    margin-top: 15px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>📝 Post New Airdrop</h1>
+
+<div class="form-box">
+
+<label>Airdrop Name</label>
+<input id="name" type="text" placeholder="Example: XYZ Airdrop">
+
+<label>Description</label>
+<textarea id="description" placeholder="Write a short description"></textarea>
+
+<label>Mining Time</label>
+<input id="mining_time" type="text" placeholder="Example: 24 Hours">
+
+<label>Reward</label>
+<input id="reward" type="text" placeholder="Example: Project Token">
+
+<label>Minimum Withdraw</label>
+<input id="min_withdraw" type="text" placeholder="Example: 100 Tokens">
+
+<label>Join Link</label>
+<input id="join_link" type="url" placeholder="https://example.com">
+
+<button id="postBtn" onclick="postAirdrop()">
+    POST AIRDROP
+</button>
+
+<div id="message"></div>
+
+</div>
+</div>
+
+<script>
+const SUPABASE_URL =
+"https://zuqcvankzuofzzpdrycq.supabase.co";
+
+const SUPABASE_KEY =
+"sb_publishable_T_q8uZXUsSE2zidrfoYraw_KEqa5G7X";
+
+async function postAirdrop() {
+
+    const button = document.getElementById("postBtn");
+    const message = document.getElementById("message");
+
+    const name = document.getElementById("name").value.trim();
+    const description = document.getElementById("description").value.trim();
+    const mining_time = document.getElementById("mining_time").value.trim();
+    const reward = document.getElementById("reward").value.trim();
+    const min_withdraw = document.getElementById("min_withdraw").value.trim();
+    const join_link = document.getElementById("join_link").value.trim();
+
+    if (!name || !join_link) {
+        message.innerHTML = "⚠️ Name এবং Join Link অবশ্যই দিতে হবে।";
+        return;
+    }
+
+    button.disabled = true;
+    button.innerText = "Posting...";
+
+    try {
+
+        const response = await fetch(
+            `${SUPABASE_URL}/rest/v1/airdrops`,
+            {
+                method: "POST",
+
+                headers: {
+                    "apikey": SUPABASE_KEY,
+                    "Authorization": `Bearer ${SUPABASE_KEY}`,
+                    "Content-Type": "application/json",
+                    "Prefer": "return=minimal"
+                },
+
+                body: JSON.stringify({
+                    name: name,
+                    description: description,
+                    mining_time: mining_time,
+                    reward: reward,
+                    min_withdraw: min_withdraw,
+                    join_link: join_link
+                })
+            }
+        );
+
+        if (!response.ok) {
+            const errorText = await response.text();
+            throw new Error(errorText);
+        }
+
+        message.innerHTML = "✅ Airdrop successfully posted!";
+
+        document.getElementById("name").value = "";
+        document.getElementById("description").value = "";
+        document.getElementById("mining_time").value = "";
+        document.getElementById("reward").value = "";
+        document.getElementById("min_withdraw").value = "";
+        document.getElementById("join_link").value = "";
+
+    } catch (error) {
+
+        console.error(error);
+
+        message.innerHTML =
+            "❌ Post করা যায়নি। Supabase permission/check করুন।";
+
+    } finally {
+
+        button.disabled = false;
+        button.innerText = "POST AIRDROP";
+    }
+}
+</script>
+
+</body>
+</html>
