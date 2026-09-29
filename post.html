@@ -181,12 +181,15 @@ async function postAirdrop() {
         document.getElementById("min_withdraw").value = "";
         document.getElementById("join_link").value = "";
 
-    } catch (error) {
 
-        console.error(error);
+} catch (error) {
 
-        message.innerHTML =
-            "❌ Post করা যায়নি। Supabase permission/check করুন।";
+    console.error(error);
+
+    message.innerHTML =
+        "❌ ERROR: " + error.message;
+
+} finally {
 
     } finally {
 
