@@ -172,7 +172,7 @@ async function postAirdrop() {
             throw new Error(errorText);
         }
 
-        message.innerHTML = "✅ Airdrop successfully posted!";
+        message.innerHTML = "✅ Airdrop successfully posted!"
 
         document.getElementById("name").value = "";
         document.getElementById("description").value = "";
