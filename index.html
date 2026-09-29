@@ -7,10 +7,9 @@
   <title>Airdrop Mining Zone</title>
   <meta name="description" content="Free Airdrop & Mining Projects">
 
-  <!-- Supabase -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-  <!-- Old Adsterra Ad Unit -->
+  <!-- Old Adsterra Unit -->
   <script src="https://pl31571592.profitableratecpmnetwork.com/19/3d/7c/193d7c7412c3023da5f25f650b3ec909.js"></script>
 
   <style>
@@ -18,8 +17,15 @@
       box-sizing: border-box;
     }
 
+    html,
     body {
       margin: 0;
+      padding: 0;
+      width: 100%;
+      overflow-x: hidden;
+    }
+
+    body {
       font-family: Arial, sans-serif;
       background: #0b0f14;
       color: #ffffff;
@@ -50,12 +56,15 @@
       margin: auto;
     }
 
-    /* TOP AD */
+    /* =========================
+       TOP BANNER
+       ========================= */
+
     .ad-box {
       width: 100%;
-      min-height: 250px;
+      min-height: 110px;
       margin: 15px 0 25px;
-      padding: 10px;
+
       background: #111820;
       border: 1px solid #202b36;
       border-radius: 12px;
@@ -67,7 +76,26 @@
       overflow: hidden;
     }
 
-    /* POST BUTTON */
+    .banner-wrapper {
+      width: 100%;
+      max-width: 728px;
+      height: 90px;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      overflow: hidden;
+    }
+
+    .banner-wrapper iframe {
+      max-width: none;
+    }
+
+    /* =========================
+       ADMIN LOGIN BUTTON
+       ========================= */
+
     .post-btn {
       display: block;
       width: 100%;
@@ -79,6 +107,7 @@
 
       text-decoration: none;
       text-align: center;
+
       font-size: 17px;
       font-weight: bold;
 
@@ -89,7 +118,10 @@
       background: #00ff99;
     }
 
-    /* SEARCH */
+    /* =========================
+       SEARCH
+       ========================= */
+
     #search {
       width: 100%;
       padding: 14px;
@@ -109,7 +141,10 @@
       border-color: #00d084;
     }
 
-    /* CARDS */
+    /* =========================
+       AIRDROP CARDS
+       ========================= */
+
     #airdropList {
       display: grid;
       gap: 15px;
@@ -182,13 +217,28 @@
       font-size: 13px;
     }
 
-    @media (max-width: 600px) {
+    /* =========================
+       MOBILE
+       ========================= */
+
+    @media (max-width: 760px) {
+
       header h1 {
         font-size: 24px;
       }
 
       .ad-box {
-        min-height: 250px;
+        min-height: 100px;
+        padding: 5px;
+      }
+
+      .banner-wrapper {
+        width: 100%;
+        height: 90px;
+      }
+
+      .banner-wrapper > div {
+        transform-origin: center center;
       }
     }
   </style>
@@ -196,29 +246,50 @@
 
 <body>
 
+  <!-- HEADER -->
   <header>
     <h1>🚀 Airdrop Mining Zone</h1>
     <p>Free Airdrop & Mining Projects</p>
   </header>
 
+
   <main class="container">
 
-    <!-- NEW ADSTERRA TOP AD -->
+    <!-- ==================================
+         NEW 728x90 ADSTERRA BANNER
+         ================================== -->
+
     <div class="ad-box">
 
-      <script async="async"
-        data-cfasync="false"
-        src="https://pl31575320.profitableratecpmnetwork.com/1f7ac79b5ecf50929e249337ffc7e4a5/invoke.js">
-      </script>
+      <div class="banner-wrapper">
 
-      <div id="container-1f7ac79b5ecf50929e249337ffc7e4a5"></div>
+        <script>
+          atOptions = {
+            'key' : '7b6610d00f3b870fe5ef7fc3670be8af',
+            'format' : 'iframe',
+            'height' : 90,
+            'width' : 728,
+            'params' : {}
+          };
+        </script>
+
+        <script
+          src="https://www.highrevenueformat.com/7b6610d00f3b870fe5ef7fc3670be8af/invoke.js">
+        </script>
+
+      </div>
 
     </div>
 
-    <!-- POST BUTTON -->
-    <a class="post-btn" href="post.html">
-      📝 POST NEW AIRDROP
+
+    <!-- ==================================
+         ADMIN LOGIN
+         ================================== -->
+
+    <a class="post-btn" href="login.html">
+      🔐 ADMIN LOGIN
     </a>
+
 
     <!-- SEARCH -->
     <input
@@ -227,12 +298,16 @@
       placeholder="🔍 Search Airdrop..."
     >
 
+
     <!-- AIRDROP LIST -->
     <div id="airdropList">
-      <div class="empty">Loading airdrops...</div>
+      <div class="empty">
+        Loading airdrops...
+      </div>
     </div>
 
   </main>
+
 
   <footer>
     © 2026 Airdrop Mining Zone
@@ -240,27 +315,30 @@
 
 
   <script>
+
     const SUPABASE_URL =
       "https://zuqcvankzuofzzpdrycq.supabase.co";
 
     const SUPABASE_KEY =
       "sb_publishable_T_q8uZXUsSE2zidrfoYraw_KEqa5G7X";
 
-    const supabaseClient =
-      window.supabase.createClient(
-        SUPABASE_URL,
-        SUPABASE_KEY
-      );
 
+    const list =
+      document.getElementById("airdropList");
 
-    const list = document.getElementById("airdropList");
-    const search = document.getElementById("search");
+    const search =
+      document.getElementById("search");
+
 
     let allAirdrops = [];
 
 
     function escapeHTML(value) {
-      if (value === null || value === undefined) {
+
+      if (
+        value === null ||
+        value === undefined
+      ) {
         return "";
       }
 
@@ -274,12 +352,15 @@
 
 
     function safeURL(value) {
+
       if (!value) {
         return "#";
       }
 
       try {
-        const url = new URL(value);
+
+        const url =
+          new URL(value);
 
         if (
           url.protocol === "http:" ||
@@ -291,14 +372,19 @@
         return "#";
 
       } catch (error) {
+
         return "#";
+
       }
     }
 
 
     function displayAirdrops(items) {
 
-      if (!items || items.length === 0) {
+      if (
+        !items ||
+        items.length === 0
+      ) {
 
         list.innerHTML = `
           <div class="empty">
@@ -310,77 +396,94 @@
       }
 
 
-      list.innerHTML = items.map(item => {
+      list.innerHTML =
+        items.map(item => {
 
-        const name =
-          escapeHTML(item.name || "Unnamed Airdrop");
+          const name =
+            escapeHTML(
+              item.name ||
+              "Unnamed Airdrop"
+            );
 
-        const description =
-          escapeHTML(
-            item.description ||
-            "No description available."
-          );
+          const description =
+            escapeHTML(
+              item.description ||
+              "No description available."
+            );
 
-        const miningTime =
-          escapeHTML(
-            item.mining_time || "Not specified"
-          );
+          const miningTime =
+            escapeHTML(
+              item.mining_time ||
+              "Not specified"
+            );
 
-        const reward =
-          escapeHTML(
-            item.reward || "Not specified"
-          );
+          const reward =
+            escapeHTML(
+              item.reward ||
+              "Not specified"
+            );
 
-        const minWithdraw =
-          escapeHTML(
-            item.min_withdraw || "Not specified"
-          );
+          const minWithdraw =
+            escapeHTML(
+              item.min_withdraw ||
+              "Not specified"
+            );
 
-        const joinLink =
-          safeURL(item.join_link);
+          const joinLink =
+            safeURL(item.join_link);
 
 
-        return `
-          <div class="card">
+          return `
 
-            <h2>🚀 ${name}</h2>
+            <div class="card">
 
-            <div class="description">
-              ${description}
+              <h2>
+                🚀 ${name}
+              </h2>
+
+              <div class="description">
+                ${description}
+              </div>
+
+              <div class="info">
+
+                <div>
+                  ⛏️ Mining Time:
+                  <strong>
+                    ${miningTime}
+                  </strong>
+                </div>
+
+                <div>
+                  🎁 Reward:
+                  <strong>
+                    ${reward}
+                  </strong>
+                </div>
+
+                <div>
+                  💰 Minimum Withdraw:
+                  <strong>
+                    ${minWithdraw}
+                  </strong>
+                </div>
+
+              </div>
+
+              <a
+                class="join-btn"
+                href="${joinLink}"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                JOIN NOW 🚀
+              </a>
+
             </div>
 
-            <div class="info">
+          `;
 
-              <div>
-                ⛏️ Mining Time:
-                <strong>${miningTime}</strong>
-              </div>
-
-              <div>
-                🎁 Reward:
-                <strong>${reward}</strong>
-              </div>
-
-              <div>
-                💰 Minimum Withdraw:
-                <strong>${minWithdraw}</strong>
-              </div>
-
-            </div>
-
-            <a
-              class="join-btn"
-              href="${joinLink}"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              JOIN NOW 🚀
-            </a>
-
-          </div>
-        `;
-
-      }).join("");
+        }).join("");
     }
 
 
@@ -388,18 +491,21 @@
 
       try {
 
-        const response = await fetch(
-          `${SUPABASE_URL}/rest/v1/airdrops?select=*`,
-          {
-            method: "GET",
+        const response =
+          await fetch(
+            `${SUPABASE_URL}/rest/v1/airdrops?select=*`,
+            {
+              method: "GET",
 
-            headers: {
-              "apikey": SUPABASE_KEY,
-              "Authorization":
-                `Bearer ${SUPABASE_KEY}`
+              headers: {
+                "apikey":
+                  SUPABASE_KEY,
+
+                "Authorization":
+                  `Bearer ${SUPABASE_KEY}`
+              }
             }
-          }
-        );
+          );
 
 
         if (!response.ok) {
@@ -407,7 +513,9 @@
           const errorText =
             await response.text();
 
-          throw new Error(errorText);
+          throw new Error(
+            errorText
+          );
         }
 
 
@@ -415,7 +523,9 @@
           await response.json();
 
 
-        displayAirdrops(allAirdrops);
+        displayAirdrops(
+          allAirdrops
+        );
 
 
       } catch (error) {
@@ -433,7 +543,7 @@
 
     search.addEventListener(
       "input",
-      function () {
+      function() {
 
         const query =
           search.value
@@ -443,28 +553,37 @@
 
         if (!query) {
 
-          displayAirdrops(allAirdrops);
+          displayAirdrops(
+            allAirdrops
+          );
 
           return;
         }
 
 
         const filtered =
-          allAirdrops.filter(item => {
+          allAirdrops.filter(
+            item => {
 
-            const text = `
-              ${item.name || ""}
-              ${item.description || ""}
-              ${item.mining_time || ""}
-              ${item.reward || ""}
-              ${item.min_withdraw || ""}
-            `.toLowerCase();
-
-            return text.includes(query);
-          });
+              const text = `
+                ${item.name || ""}
+                ${item.description || ""}
+                ${item.mining_time || ""}
+                ${item.reward || ""}
+                ${item.min_withdraw || ""}
+              `.toLowerCase();
 
 
-        displayAirdrops(filtered);
+              return text.includes(
+                query
+              );
+            }
+          );
+
+
+        displayAirdrops(
+          filtered
+        );
       }
     );
 
