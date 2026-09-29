@@ -1,1 +1,186 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Admin Login - Airdrop Mining Zone</title>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+
+      font-family: Arial, sans-serif;
+      background: #0b0f14;
+      color: white;
+    }
+
+    .login-box {
+      width: 100%;
+      max-width: 400px;
+      padding: 25px;
+
+      background: #111820;
+      border: 1px solid #26323e;
+      border-radius: 14px;
+    }
+
+    h1 {
+      text-align: center;
+      color: #00ff99;
+      margin-top: 0;
+    }
+
+    input {
+      width: 100%;
+      padding: 14px;
+      margin-bottom: 12px;
+
+      background: #0b1015;
+      color: white;
+
+      border: 1px solid #293541;
+      border-radius: 8px;
+      outline: none;
+    }
+
+    button {
+      width: 100%;
+      padding: 14px;
+
+      background: #00d084;
+      color: #001b10;
+
+      border: 0;
+      border-radius: 8px;
+
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    #message {
+      text-align: center;
+      margin-top: 15px;
+      color: #ff7777;
+    }
+
+    .back {
+      display: block;
+      text-align: center;
+      margin-top: 18px;
+      color: #00ff99;
+      text-decoration: none;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="login-box">
+
+    <h1>🔐 Admin Login</h1>
+
+    <form id="loginForm">
+
+      <input
+        type="email"
+        id="email"
+        placeholder="Admin Email"
+        required
+      >
+
+      <input
+        type="password"
+        id="password"
+        placeholder="Password"
+        required
+      >
+
+      <button type="submit">
+        LOGIN
+      </button>
+
+    </form>
+
+    <div id="message"></div>
+
+    <a class="back" href="index.html">
+      ← Back to Home
+    </a>
+
+  </div>
+
+
+  <script>
+    const SUPABASE_URL =
+      "https://zuqcvankzuofzzpdrycq.supabase.co";
+
+    const SUPABASE_KEY =
+      "sb_publishable_T_q8uZXUsSE2zidrfoYraw_KEqa5G7X";
+
+    const supabaseClient =
+      window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_KEY
+      );
+
+
+    const form =
+      document.getElementById("loginForm");
+
+    const message =
+      document.getElementById("message");
+
+
+    form.addEventListener("submit", async function(e) {
+
+      e.preventDefault();
+
+      message.style.color = "#00ff99";
+      message.textContent = "Logging in...";
+
+
+      const email =
+        document.getElementById("email").value.trim();
+
+      const password =
+        document.getElementById("password").value;
+
+
+      const { error } =
+        await supabaseClient.auth.signInWithPassword({
+          email: email,
+          password: password
+        });
+
+
+      if (error) {
+
+        message.style.color = "#ff7777";
+        message.textContent =
+          "❌ " + error.message;
+
+        return;
+      }
+
+
+      window.location.href = "post.html";
+
+    });
+  </script>
+
+</body>
+</html>
