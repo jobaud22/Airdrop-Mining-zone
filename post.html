@@ -1,467 +1,348 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Post Airdrop</title>
+  <title>Post Airdrop - Airdrop Mining Zone</title>
 
-<style>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-* {
-    box-sizing: border-box;
-}
+  <style>
+    * {
+      box-sizing: border-box;
+    }
 
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background: #0f0f0f;
-    color: white;
-}
+    body {
+      margin: 0;
+      background: #0b0f14;
+      color: white;
+      font-family: Arial, sans-serif;
+    }
 
-.container {
-    width: 94%;
-    max-width: 600px;
-    margin: 40px auto;
-}
+    header {
+      text-align: center;
+      padding: 25px 15px;
+      background: #101720;
+      border-bottom: 1px solid #202a35;
+    }
 
-h1 {
-    text-align: center;
-    margin-bottom: 25px;
-}
+    header h1 {
+      margin: 0;
+      color: #00ff99;
+    }
 
-.form-box {
-    background: #1c1c1c;
-    padding: 20px;
-    border-radius: 15px;
-    border: 1px solid #333;
-}
+    .container {
+      width: 94%;
+      max-width: 650px;
+      margin: 25px auto;
+    }
 
-label {
-    display: block;
-    margin-top: 15px;
-    margin-bottom: 7px;
-    font-weight: bold;
-}
+    .box {
+      background: #111820;
+      padding: 20px;
+      border-radius: 14px;
+      border: 1px solid #26323e;
+    }
 
-input,
-textarea {
-    width: 100%;
-    padding: 13px;
-    border-radius: 8px;
-    border: 1px solid #444;
-    background: #111;
-    color: white;
-    font-size: 16px;
-    outline: none;
-}
+    input,
+    textarea {
+      width: 100%;
+      padding: 13px;
+      margin-bottom: 12px;
 
-input:focus,
-textarea:focus {
-    border-color: #00c853;
-}
+      background: #0b1015;
+      color: white;
 
-textarea {
-    min-height: 100px;
-    resize: vertical;
-}
+      border: 1px solid #293541;
+      border-radius: 8px;
+      outline: none;
 
-button {
-    width: 100%;
-    margin-top: 20px;
-    padding: 14px;
-    border: none;
-    border-radius: 9px;
-    background: #00c853;
-    color: white;
-    font-size: 17px;
-    font-weight: bold;
-    cursor: pointer;
-}
+      font-family: Arial, sans-serif;
+    }
 
-button:disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
-}
+    textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
 
-#message {
-    text-align: center;
-    margin-top: 15px;
-    line-height: 1.5;
-    word-break: break-word;
-}
+    button {
+      width: 100%;
+      padding: 14px;
 
-.success {
-    color: #00e676;
-}
+      background: #00d084;
+      color: #001b10;
 
-.error {
-    color: #ff5252;
-}
+      border: 0;
+      border-radius: 8px;
 
-.back {
-    display: block;
-    text-align: center;
-    margin-top: 20px;
-    color: #00e676;
-    text-decoration: none;
-}
+      font-weight: bold;
+      font-size: 16px;
+      cursor: pointer;
+    }
 
-</style>
+    .logout {
+      background: #252e38;
+      color: white;
+      margin-top: 10px;
+    }
 
+    #message {
+      text-align: center;
+      margin-top: 15px;
+      line-height: 1.5;
+    }
+
+    .back {
+      display: block;
+      text-align: center;
+      margin-top: 20px;
+      color: #00ff99;
+      text-decoration: none;
+    }
+  </style>
 </head>
 
 <body>
 
-<div class="container">
-
-<h1>📝 Post New Airdrop</h1>
-
-<div class="form-box">
-
-<label for="name">
-Airdrop Name
-</label>
-
-<input
-    id="name"
-    type="text"
-    placeholder="Example: XYZ Airdrop"
->
-
-<label for="description">
-Description
-</label>
-
-<textarea
-    id="description"
-    placeholder="Write a short description"
-></textarea>
-
-<label for="mining_time">
-Mining Time
-</label>
-
-<input
-    id="mining_time"
-    type="text"
-    placeholder="Example: 24 Hours"
->
-
-<label for="reward">
-Reward
-</label>
-
-<input
-    id="reward"
-    type="text"
-    placeholder="Example: Project Token"
->
-
-<label for="min_withdraw">
-Minimum Withdraw
-</label>
-
-<input
-    id="min_withdraw"
-    type="text"
-    placeholder="Example: 100 Tokens"
->
-
-<label for="join_link">
-Join Link
-</label>
-
-<input
-    id="join_link"
-    type="url"
-    placeholder="https://example.com"
->
-
-<button
-    id="postBtn"
-    onclick="postAirdrop()"
->
-    POST AIRDROP
-</button>
-
-<div id="message"></div>
-
-<a
-    class="back"
-    href="index.html"
->
-    ← Back to Home
-</a>
-
-</div>
-
-</div>
+  <header>
+    <h1>📝 Post New Airdrop</h1>
+  </header>
 
 
-<script>
+  <main class="container">
 
-const SUPABASE_URL =
-"https://zuqcvankzuofzzpdrycq.supabase.co";
+    <div class="box">
 
-const SUPABASE_KEY =
-"sb_publishable_T_q8uZXUsSE2zidrfoYraw_KEqa5G7X";
+      <form id="postForm">
+
+        <input
+          type="text"
+          id="name"
+          placeholder="Airdrop Name"
+          required
+        >
+
+        <textarea
+          id="description"
+          placeholder="Airdrop Description"
+          required
+        ></textarea>
+
+        <input
+          type="text"
+          id="mining_time"
+          placeholder="Mining Time"
+          required
+        >
+
+        <input
+          type="text"
+          id="reward"
+          placeholder="Reward"
+          required
+        >
+
+        <input
+          type="text"
+          id="min_withdraw"
+          placeholder="Minimum Withdraw"
+          required
+        >
+
+        <input
+          type="url"
+          id="join_link"
+          placeholder="Join Link (https://...)"
+          required
+        >
+
+        <button type="submit">
+          🚀 POST AIRDROP
+        </button>
+
+      </form>
 
 
-async function postAirdrop() {
+      <button
+        class="logout"
+        id="logoutBtn"
+        type="button"
+      >
+        LOGOUT
+      </button>
 
-    const button =
-        document.getElementById("postBtn");
+
+      <div id="message"></div>
+
+
+      <a
+        class="back"
+        href="index.html"
+      >
+        ← Back to Home
+      </a>
+
+    </div>
+
+  </main>
+
+
+  <script>
+
+    const SUPABASE_URL =
+      "https://zuqcvankzuofzzpdrycq.supabase.co";
+
+    const SUPABASE_KEY =
+      "sb_publishable_T_q8uZXUsSE2zidrfoYraw_KEqa5G7X";
+
+
+    const supabaseClient =
+      window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_KEY
+      );
+
+
+    const form =
+      document.getElementById("postForm");
 
     const message =
-        document.getElementById("message");
+      document.getElementById("message");
+
+    const logoutBtn =
+      document.getElementById("logoutBtn");
 
 
-    const name =
-        document.getElementById("name")
-        .value
-        .trim();
+    // Check login
+    async function checkAdmin() {
 
-    const description =
-        document.getElementById("description")
-        .value
-        .trim();
-
-    const mining_time =
-        document.getElementById("mining_time")
-        .value
-        .trim();
-
-    const reward =
-        document.getElementById("reward")
-        .value
-        .trim();
-
-    const min_withdraw =
-        document.getElementById("min_withdraw")
-        .value
-        .trim();
-
-    const join_link =
-        document.getElementById("join_link")
-        .value
-        .trim();
+      const {
+        data: { user }
+      } = await supabaseClient.auth.getUser();
 
 
-    /* Required fields */
+      if (!user) {
 
-    if (!name) {
+        window.location.href = "login.html";
 
-        message.className = "error";
+        return null;
+      }
 
-        message.innerHTML =
-            "⚠️ Airdrop Name দিন।";
 
-        return;
+      return user;
     }
 
 
-    if (!join_link) {
+    checkAdmin();
 
-        message.className = "error";
 
-        message.innerHTML =
-            "⚠️ Join Link দিন।";
+    // Post Airdrop
+    form.addEventListener("submit", async function(e) {
 
+      e.preventDefault();
+
+
+      const user =
+        await checkAdmin();
+
+
+      if (!user) {
         return;
-    }
+      }
 
 
-    /* URL check */
-
-    try {
-
-        new URL(join_link);
-
-    } catch {
-
-        message.className = "error";
-
-        message.innerHTML =
-            "⚠️ সঠিক Join Link দিন। Example: https://example.com";
-
-        return;
-    }
+      message.style.color = "#00ff99";
+      message.textContent =
+        "Posting...";
 
 
-    button.disabled = true;
+      const data = {
 
-    button.innerText = "Posting...";
+        name:
+          document.getElementById("name").value.trim(),
 
-    message.className = "";
+        description:
+          document.getElementById("description").value.trim(),
 
-    message.innerHTML =
-        "⏳ Airdrop পোস্ট হচ্ছে...";
+        mining_time:
+          document.getElementById("mining_time").value.trim(),
 
+        reward:
+          document.getElementById("reward").value.trim(),
 
-    try {
+        min_withdraw:
+          document.getElementById("min_withdraw").value.trim(),
 
-        const response = await fetch(
+        join_link:
+          document.getElementById("join_link").value.trim()
 
-            `${SUPABASE_URL}/rest/v1/airdrops`,
-
-            {
-
-                method: "POST",
-
-                headers: {
-
-                    "apikey": SUPABASE_KEY,
-
-                    "Authorization":
-                        `Bearer ${SUPABASE_KEY}`,
-
-                    "Content-Type":
-                        "application/json",
-
-                    "Prefer":
-                        "return=representation"
-
-                },
-
-                body: JSON.stringify({
-
-                    name: name,
-
-                    description: description,
-
-                    mining_time: mining_time,
-
-                    reward: reward,
-
-                    min_withdraw: min_withdraw,
-
-                    join_link: join_link
-
-                })
-
-            }
-
-        );
+      };
 
 
-        const responseText =
-            await response.text();
+      const response = await fetch(
+        `${SUPABASE_URL}/rest/v1/airdrops`,
+        {
+          method: "POST",
 
+          headers: {
 
-        console.log(
-            "Supabase Status:",
-            response.status
-        );
+            "apikey": SUPABASE_KEY,
 
-        console.log(
-            "Supabase Response:",
-            responseText
-        );
+            "Authorization":
+              `Bearer ${SUPABASE_KEY}`,
 
+            "Content-Type":
+              "application/json",
 
-        if (!response.ok) {
+            "Prefer":
+              "return=minimal"
+          },
 
-            let errorMessage =
-                responseText;
-
-            try {
-
-                const errorData =
-                    JSON.parse(responseText);
-
-                if (errorData.message) {
-
-                    errorMessage =
-                        errorData.message;
-
-                }
-
-                if (errorData.hint) {
-
-                    errorMessage +=
-                        " | Hint: " +
-                        errorData.hint;
-
-                }
-
-            } catch {
-
-                /* Keep original response */
-
-            }
-
-
-            throw new Error(
-                "Supabase Error (" +
-                response.status +
-                "): " +
-                errorMessage
-            );
+          body: JSON.stringify(data)
         }
+      );
 
 
-        /* Success */
+      if (!response.ok) {
 
-        message.className =
-            "success";
+        const errorText =
+          await response.text();
 
-        message.innerHTML =
-            "✅ Airdrop successfully posted!";
+        message.style.color = "#ff7777";
 
+        message.textContent =
+          "❌ " + errorText;
 
-        /* Clear form */
-
-        document.getElementById("name")
-            .value = "";
-
-        document.getElementById("description")
-            .value = "";
-
-        document.getElementById("mining_time")
-            .value = "";
-
-        document.getElementById("reward")
-            .value = "";
-
-        document.getElementById("min_withdraw")
-            .value = "";
-
-        document.getElementById("join_link")
-            .value = "";
+        return;
+      }
 
 
-    } catch (error) {
+      message.style.color = "#00ff99";
 
-        console.error(
-            "POST ERROR:",
-            error
-        );
+      message.textContent =
+        "✅ Airdrop posted successfully!";
 
 
-        message.className =
-            "error";
+      form.reset();
+
+    });
 
 
-        message.innerHTML =
-            "❌ " +
-            error.message;
+    // Logout
+    logoutBtn.addEventListener(
+      "click",
+      async function() {
 
+        await supabaseClient.auth.signOut();
 
-    } finally {
+        window.location.href =
+          "login.html";
 
-        button.disabled = false;
+      }
+    );
 
-        button.innerText =
-            "POST AIRDROP";
-
-    }
-
-}
-
-</script>
+  </script>
 
 </body>
-
 </html>
