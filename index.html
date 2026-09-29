@@ -12,9 +12,7 @@
      ADSTERRA
 ========================= -->
 
-<script
-src="https://pl31571592.profitableratecpmnetwork.com/19/3d/7c/193d7c7412c3023da5f25f650b3ec909.js">
-</script>
+<script src="https://pl31571592.profitableratecpmnetwork.com/19/3d/7c/193d7c7412c3023da5f25f650b3ec909.js"></script>
 
 
 <style>
@@ -49,7 +47,7 @@ header p {
     color: #aaa;
 }
 
-/* CONTAINER */
+/* MAIN */
 
 .container {
     width: 94%;
@@ -57,18 +55,22 @@ header p {
     margin: auto;
 }
 
-/* AD AREA */
+/* BIG AD AREA */
 
 .ad-box {
     width: 100%;
-    min-height: 90px;
-    margin: 15px 0;
+    min-height: 220px;
+    margin: 20px 0 25px;
+
     display: flex;
     justify-content: center;
     align-items: center;
+
     background: #151515;
+
     border: 1px solid #292929;
     border-radius: 12px;
+
     overflow: hidden;
 }
 
@@ -80,17 +82,22 @@ header p {
 /* POST BUTTON */
 
 .post-area {
-    margin: 20px 0;
     text-align: center;
+    margin: 20px 0;
 }
 
 .post-btn {
     display: inline-block;
+
     padding: 13px 22px;
+
     background: #00c853;
     color: white;
+
     text-decoration: none;
+
     border-radius: 9px;
+
     font-weight: bold;
 }
 
@@ -102,12 +109,19 @@ header p {
 
 .search-box input {
     width: 100%;
+
     padding: 15px;
+
     background: #181818;
+
     border: 1px solid #333;
+
     border-radius: 10px;
+
     color: white;
+
     font-size: 16px;
+
     outline: none;
 }
 
@@ -119,7 +133,10 @@ header p {
 
 .airdrop-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+
+    grid-template-columns:
+        repeat(auto-fit, minmax(280px, 1fr));
+
     gap: 18px;
 }
 
@@ -127,32 +144,43 @@ header p {
 
 .card {
     background: #1a1a1a;
+
     border: 1px solid #333;
+
     border-radius: 15px;
+
     padding: 20px;
+
     transition: 0.2s;
 }
 
 .card:hover {
     border-color: #00c853;
+
     transform: translateY(-2px);
 }
 
 .card h2 {
     margin-top: 0;
+
     margin-bottom: 12px;
+
     font-size: 21px;
+
     color: #00e676;
 }
 
 .description {
     color: #ccc;
+
     line-height: 1.5;
+
     margin-bottom: 18px;
 }
 
 .info {
     margin: 9px 0;
+
     color: #ddd;
 }
 
@@ -160,18 +188,27 @@ header p {
     color: white;
 }
 
-/* JOIN BUTTON */
+/* JOIN */
 
 .join-btn {
     display: block;
+
     width: 100%;
+
     text-align: center;
+
     margin-top: 18px;
+
     padding: 13px;
+
     background: #00c853;
+
     color: white;
+
     text-decoration: none;
+
     border-radius: 9px;
+
     font-weight: bold;
 }
 
@@ -183,7 +220,9 @@ header p {
 
 .status {
     text-align: center;
+
     padding: 30px 10px;
+
     color: #aaa;
 }
 
@@ -195,12 +234,15 @@ header p {
 
 footer {
     text-align: center;
+
     color: #666;
+
     padding: 30px 10px;
+
     margin-top: 30px;
+
     border-top: 1px solid #222;
 }
-
 
 /* MOBILE */
 
@@ -218,6 +260,10 @@ footer {
         grid-template-columns: 1fr;
     }
 
+    .ad-box {
+        min-height: 200px;
+    }
+
 }
 
 </style>
@@ -228,9 +274,7 @@ footer {
 <body>
 
 
-<!-- =========================
-     HEADER
-========================= -->
+<!-- HEADER -->
 
 <header>
 
@@ -253,6 +297,8 @@ footer {
 
 <div class="ad-box">
 
+    <!-- Adsterra script is loaded above -->
+
     <div class="ad-label">
         Advertisement
     </div>
@@ -261,9 +307,7 @@ footer {
 
 
 
-<!-- =========================
-     POST AIRDROP
-========================= -->
+<!-- POST AIRDROP -->
 
 <div class="post-area">
 
@@ -278,9 +322,7 @@ footer {
 
 
 
-<!-- =========================
-     SEARCH
-========================= -->
+<!-- SEARCH -->
 
 <div class="search-box">
 
@@ -295,9 +337,7 @@ footer {
 
 
 
-<!-- =========================
-     STATUS
-========================= -->
+<!-- STATUS -->
 
 <div
     id="loading"
@@ -333,9 +373,7 @@ footer {
 
 
 
-<!-- =========================
-     AIRDROP LIST
-========================= -->
+<!-- AIRDROP LIST -->
 
 <div
     id="airdropList"
@@ -347,9 +385,7 @@ footer {
 
 
 
-<!-- =========================
-     FOOTER
-========================= -->
+<!-- FOOTER -->
 
 <footer>
 
@@ -360,7 +396,6 @@ footer {
 
 
 <script>
-
 
 /* =========================
    SUPABASE
@@ -376,18 +411,21 @@ const SUPABASE_KEY =
 let allAirdrops = [];
 
 
-
 /* =========================
-   HTML SECURITY
+   ESCAPE HTML
 ========================= */
 
 function escapeHTML(value) {
 
-    if (value === null || value === undefined) {
+    if (
+        value === null ||
+        value === undefined
+    ) {
         return "";
     }
 
     return String(value)
+
         .replace(/&/g, "&amp;")
         .replace(/</g, "&lt;")
         .replace(/>/g, "&gt;")
@@ -395,7 +433,6 @@ function escapeHTML(value) {
         .replace(/'/g, "&#039;");
 
 }
-
 
 
 /* =========================
@@ -426,7 +463,6 @@ function safeURL(value) {
 }
 
 
-
 /* =========================
    LOAD AIRDROPS
 ========================= */
@@ -441,9 +477,6 @@ async function loadAirdrops() {
 
     const empty =
         document.getElementById("empty");
-
-    const list =
-        document.getElementById("airdropList");
 
 
     loading.style.display = "block";
@@ -516,7 +549,7 @@ async function loadAirdrops() {
         error.style.display = "block";
 
         error.innerHTML =
-            "❌ Airdrop load করা যায়নি।<br><br>" +
+            "❌ Airdrop load করা যায়নি.<br><br>" +
             escapeHTML(err.message);
 
     }
@@ -524,9 +557,8 @@ async function loadAirdrops() {
 }
 
 
-
 /* =========================
-   DISPLAY AIRDROPS
+   DISPLAY
 ========================= */
 
 function displayAirdrops(airdrops) {
@@ -557,7 +589,9 @@ function displayAirdrops(airdrops) {
 
 
         const name =
-            escapeHTML(airdrop.name);
+            escapeHTML(
+                airdrop.name
+            );
 
 
         const description =
@@ -646,7 +680,6 @@ function displayAirdrops(airdrops) {
 }
 
 
-
 /* =========================
    SEARCH
 ========================= */
@@ -656,6 +689,7 @@ function searchAirdrops() {
     const input =
         document.getElementById("searchInput");
 
+
     const keyword =
         input.value
         .toLowerCase()
@@ -664,7 +698,9 @@ function searchAirdrops() {
 
     if (!keyword) {
 
-        displayAirdrops(allAirdrops);
+        displayAirdrops(
+            allAirdrops
+        );
 
         return;
 
@@ -672,43 +708,45 @@ function searchAirdrops() {
 
 
     const filtered =
-        allAirdrops.filter(function(airdrop) {
-
-            const name =
-                String(
-                    airdrop.name || ""
-                ).toLowerCase();
+        allAirdrops.filter(
+            function(airdrop) {
 
 
-            const description =
-                String(
-                    airdrop.description || ""
-                ).toLowerCase();
+                const name =
+                    String(
+                        airdrop.name || ""
+                    ).toLowerCase();
 
 
-            const reward =
-                String(
-                    airdrop.reward || ""
-                ).toLowerCase();
+                const description =
+                    String(
+                        airdrop.description || ""
+                    ).toLowerCase();
 
 
-            return (
+                const reward =
+                    String(
+                        airdrop.reward || ""
+                    ).toLowerCase();
 
-                name.includes(keyword) ||
 
-                description.includes(keyword) ||
+                return (
 
-                reward.includes(keyword)
+                    name.includes(keyword) ||
 
-            );
+                    description.includes(keyword) ||
 
-        });
+                    reward.includes(keyword)
+
+                );
+
+            }
+        );
 
 
     displayAirdrops(filtered);
 
 }
-
 
 
 /* =========================
@@ -717,9 +755,8 @@ function searchAirdrops() {
 
 loadAirdrops();
 
-
 </script>
 
 </body>
 
-    </html>
+</html>
