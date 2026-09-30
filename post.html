@@ -1,4 +1,5 @@
-<!DOCTYPE html>
+
+      <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -50,14 +51,11 @@
       width: 100%;
       padding: 13px;
       margin-bottom: 12px;
-
       background: #0b1015;
       color: white;
-
       border: 1px solid #293541;
       border-radius: 8px;
       outline: none;
-
       font-family: Arial, sans-serif;
     }
 
@@ -66,19 +64,47 @@
       resize: vertical;
     }
 
+    input[type="file"] {
+      padding: 10px;
+    }
+
+    .file-label {
+      display: block;
+      margin-bottom: 8px;
+      color: #00ff99;
+      font-weight: bold;
+    }
+
+    #previewBox {
+      display: none;
+      margin-bottom: 15px;
+      text-align: center;
+    }
+
+    #preview {
+      width: 100%;
+      max-height: 350px;
+      object-fit: contain;
+      border-radius: 10px;
+      border: 1px solid #293541;
+      background: #0b1015;
+    }
+
     button {
       width: 100%;
       padding: 14px;
-
       background: #00d084;
       color: #001b10;
-
       border: 0;
       border-radius: 8px;
-
       font-weight: bold;
       font-size: 16px;
       cursor: pointer;
+    }
+
+    button:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
     }
 
     .logout {
@@ -91,6 +117,7 @@
       text-align: center;
       margin-top: 15px;
       line-height: 1.5;
+      word-break: break-word;
     }
 
     .back {
@@ -108,7 +135,6 @@
   <header>
     <h1>📝 Post New Airdrop</h1>
   </header>
-
 
   <main class="container">
 
@@ -157,36 +183,41 @@
           required
         >
 
-        <button type="submit">
+        <label class="file-label">
+          📸 Airdrop Screenshot
+        </label>
+
+        <input
+          type="file"
+          id="screenshot"
+          accept="image/*"
+          required
+        >
+
+        <div id="previewBox">
+          <p>Screenshot Preview:</p>
+          <img id="preview" alt="Screenshot Preview">
+        </div>
+
+        <button id="postBtn" type="submit">
           🚀 POST AIRDROP
         </button>
 
       </form>
 
-
-      <button
-        class="logout"
-        id="logoutBtn"
-        type="button"
-      >
+      <button class="logout" id="logoutBtn" type="button">
         LOGOUT
       </button>
 
-
       <div id="message"></div>
 
-
-      <a
-        class="back"
-        href="index.html"
-      >
+      <a class="back" href="index.html">
         ← Back to Home
       </a>
 
     </div>
 
   </main>
-
 
   <script>
 
@@ -196,7 +227,6 @@
     const SUPABASE_KEY =
       "sb_publishable_T_q8uZXUsSE2zidrfoYraw_KEqa5G7X";
 
-
     const supabaseClient =
       window.supabase.createClient(
         SUPABASE_URL,
@@ -204,31 +234,26 @@
       );
 
 
-    const form =
-      document.getElementById("postForm");
+    const form = document.getElementById("postForm");
+    const message = document.getElementById("message");
+    const logoutBtn = document.getElementById("logoutBtn");
+    const screenshotInput = document.getElementById("screenshot");
+    const previewBox = document.getElementById("previewBox");
+    const preview = document.getElementById("preview");
+    const postBtn = document.getElementById("postBtn");
 
-    const message =
-      document.getElementById("message");
 
-    const logoutBtn =
-      document.getElementById("logoutBtn");
-
-
-    // Check login
+    // Check admin login
     async function checkAdmin() {
 
       const {
         data: { user }
       } = await supabaseClient.auth.getUser();
 
-
       if (!user) {
-
         window.location.href = "login.html";
-
         return null;
       }
-
 
       return user;
     }
@@ -237,110 +262,211 @@
     checkAdmin();
 
 
-    // Post Airdrop
+    // Screenshot preview
+    screenshotInput.addEventListener("change", function() {
+
+      const file = screenshotInput.files[0];
+
+      if (!file) {
+        previewBox.style.display = "none";
+        preview.src = "";
+        return;
+      }
+
+      if (!file.type.startsWith("image/")) {
+        message.style.color = "#ff7777";
+        message.textContent = "❌ Please select an image file.";
+        screenshotInput.value = "";
+        previewBox.style.display = "none";
+        return;
+      }
+
+      if (file.size > 5 * 1024 * 1024) {
+        message.style.color = "#ff7777";
+        message.textContent = "❌ Screenshot must be under 5MB.";
+        screenshotInput.value = "";
+        previewBox.style.display = "none";
+        return;
+      }
+
+      const reader = new FileReader();
+
+      reader.onload = function(e) {
+        preview.src = e.target.result;
+        previewBox.style.display = "block";
+        message.textContent = "";
+      };
+
+      reader.readAsDataURL(file);
+    });
+
+
+    // Submit post
     form.addEventListener("submit", async function(e) {
 
       e.preventDefault();
 
+      const user = await checkAdmin();
 
-      const user =
-        await checkAdmin();
+      if (!user) return;
 
 
-      if (!user) {
+      const file = screenshotInput.files[0];
+
+      if (!file) {
+        message.style.color = "#ff7777";
+        message.textContent = "❌ Please select a screenshot.";
         return;
       }
 
 
+      postBtn.disabled = true;
+      postBtn.textContent = "⏳ POSTING...";
       message.style.color = "#00ff99";
-      message.textContent =
-        "Posting...";
+      message.textContent = "Uploading screenshot...";
 
 
-      const data = {
+      try {
 
-        name:
-          document.getElementById("name").value.trim(),
+        // Create unique file name
+        const fileExtension =
+          file.name.split(".").pop().toLowerCase();
 
-        description:
-          document.getElementById("description").value.trim(),
-
-        mining_time:
-          document.getElementById("mining_time").value.trim(),
-
-        reward:
-          document.getElementById("reward").value.trim(),
-
-        min_withdraw:
-          document.getElementById("min_withdraw").value.trim(),
-
-        join_link:
-          document.getElementById("join_link").value.trim()
-
-      };
+        const fileName =
+          "airdrop_" +
+          Date.now() +
+          "_" +
+          Math.random().toString(36).substring(2, 10) +
+          "." +
+          fileExtension;
 
 
-      const response = await fetch(
-        `${SUPABASE_URL}/rest/v1/airdrops`,
-        {
-          method: "POST",
+        const filePath = fileName;
 
-          headers: {
 
-            "apikey": SUPABASE_KEY,
+        // Upload screenshot
+        const {
+          error: uploadError
+        } = await supabaseClient.storage
+          .from("screenshots")
+          .upload(filePath, file, {
+            cacheControl: "3600",
+            upsert: false,
+            contentType: file.type
+          });
 
-            "Authorization":
-              `Bearer ${SUPABASE_KEY}`,
 
-            "Content-Type":
-              "application/json",
-
-            "Prefer":
-              "return=minimal"
-          },
-
-          body: JSON.stringify(data)
+        if (uploadError) {
+          throw new Error(
+            "Screenshot upload failed: " +
+            uploadError.message
+          );
         }
-      );
 
-
-      if (!response.ok) {
-
-        const errorText =
-          await response.text();
-
-        message.style.color = "#ff7777";
 
         message.textContent =
-          "❌ " + errorText;
+          "Saving airdrop...";
 
-        return;
+
+        // Get public screenshot URL
+        const {
+          data: publicData
+        } = supabaseClient.storage
+          .from("screenshots")
+          .getPublicUrl(filePath);
+
+
+        const screenshot_url =
+          publicData.publicUrl;
+
+
+        // Airdrop data
+        const airdropData = {
+
+          name:
+            document.getElementById("name")
+              .value.trim(),
+
+          description:
+            document.getElementById("description")
+              .value.trim(),
+
+          mining_time:
+            document.getElementById("mining_time")
+              .value.trim(),
+
+          reward:
+            document.getElementById("reward")
+              .value.trim(),
+
+          min_withdraw:
+            document.getElementById("min_withdraw")
+              .value.trim(),
+
+          join_link:
+            document.getElementById("join_link")
+              .value.trim(),
+
+          screenshot_url:
+            screenshot_url
+        };
+
+
+        // Insert into database
+        const {
+          error: insertError
+        } = await supabaseClient
+          .from("airdrops")
+          .insert([airdropData]);
+
+
+        if (insertError) {
+          throw new Error(
+            "Database error: " +
+            insertError.message
+          );
+        }
+
+
+        // Success
+        message.style.color = "#00ff99";
+        message.textContent =
+          "✅ Airdrop posted successfully!";
+
+
+        form.reset();
+
+        preview.src = "";
+        previewBox.style.display = "none";
+
+
+      } catch (error) {
+
+        console.error(error);
+
+        message.style.color = "#ff7777";
+        message.textContent =
+          "❌ " + error.message;
+
+      } finally {
+
+        postBtn.disabled = false;
+        postBtn.textContent =
+          "🚀 POST AIRDROP";
+
       }
-
-
-      message.style.color = "#00ff99";
-
-      message.textContent =
-        "✅ Airdrop posted successfully!";
-
-
-      form.reset();
 
     });
 
 
     // Logout
-    logoutBtn.addEventListener(
-      "click",
-      async function() {
+    logoutBtn.addEventListener("click", async function() {
 
-        await supabaseClient.auth.signOut();
+      await supabaseClient.auth.signOut();
 
-        window.location.href =
-          "login.html";
+      window.location.href = "login.html";
 
-      }
-    );
+    });
 
   </script>
 
