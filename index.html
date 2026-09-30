@@ -17,10 +17,9 @@
     content="Free Airdrop & Mining Projects"
   >
 
-  <!-- Supabase -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-  <!-- Old Ad Unit -->
+  <!-- ONLY AD SCRIPT -->
   <script src="https://pl31571592.profitableratecpmnetwork.com/19/3d/7c/193d7c7412c3023da5f25f650b3ec909.js"></script>
 
 
@@ -67,7 +66,7 @@
     }
 
 
-    /* MAIN CONTAINER */
+    /* MAIN */
 
     .container {
       width: 94%;
@@ -76,11 +75,12 @@
     }
 
 
-    /* AD BOX */
+    /* AD AREA */
 
     .ad-box {
       width: 100%;
-      min-height: 110px;
+      min-height: 100px;
+
       margin: 15px 0 25px;
 
       background: #111820;
@@ -90,32 +90,18 @@
       border-radius: 12px;
 
       display: flex;
+
       justify-content: center;
+
       align-items: center;
 
       overflow: hidden;
+
+      text-align: center;
     }
 
 
-    .banner-wrapper {
-      width: 100%;
-      max-width: 728px;
-      height: 90px;
-
-      display: flex;
-      justify-content: center;
-      align-items: center;
-
-      overflow: hidden;
-    }
-
-
-    .banner-wrapper iframe {
-      max-width: none;
-    }
-
-
-    /* ADMIN LOGIN BUTTON */
+    /* ADMIN LOGIN */
 
     .post-btn {
       display: block;
@@ -184,7 +170,7 @@
     }
 
 
-    /* AIRDROP CARD */
+    /* CARD */
 
     .card {
       background: #111820;
@@ -270,7 +256,7 @@
     }
 
 
-    /* JOIN BUTTON */
+    /* JOIN */
 
     .join-btn {
       display: block;
@@ -298,7 +284,7 @@
     }
 
 
-    /* EMPTY / ERROR */
+    /* EMPTY */
 
     .empty {
       text-align: center;
@@ -332,25 +318,15 @@
         font-size: 24px;
       }
 
-
       .ad-box {
         min-height: 100px;
 
-        padding: 5px;
+        margin-top: 15px;
       }
-
-
-      .banner-wrapper {
-        width: 100%;
-
-        height: 90px;
-      }
-
 
       .card {
         padding: 15px;
       }
-
 
       .card h2 {
         font-size: 20px;
@@ -385,41 +361,11 @@
   <main class="container">
 
 
-    <!-- 728x90 AD -->
+    <!-- ONLY ONE AD -->
 
     <div class="ad-box">
 
-      <div class="banner-wrapper">
-
-        <script>
-
-          atOptions = {
-
-            'key':
-              '7b6610d00f3b870fe5ef7fc3670be8af',
-
-            'format':
-              'iframe',
-
-            'height':
-              90,
-
-            'width':
-              728,
-
-            'params':
-              {}
-
-          };
-
-        </script>
-
-
-        <script
-          src="https://www.highrevenueformat.com/7b6610d00f3b870fe5ef7fc3670be8af/invoke.js">
-        </script>
-
-      </div>
+      <script src="https://pl31571592.profitableratecpmnetwork.com/19/3d/7c/193d7c7412c3023da5f25f650b3ec909.js"></script>
 
     </div>
 
@@ -454,7 +400,9 @@
     <div id="airdropList">
 
       <div class="empty">
+
         ⏳ Loading airdrops...
+
       </div>
 
     </div>
@@ -508,8 +456,6 @@
         "search"
       );
 
-
-    /* ALL AIRDROPS */
 
     let allAirdrops = [];
 
@@ -626,11 +572,9 @@
 
 
 
-      list.innerHTML = items.map(
-        item => {
+      list.innerHTML =
+        items.map(item => {
 
-
-          /* NAME */
 
           const name =
             escapeHTML(
@@ -639,18 +583,12 @@
             );
 
 
-
-          /* DESCRIPTION */
-
           const description =
             escapeHTML(
               item.description ||
               "No description available."
             );
 
-
-
-          /* MINING TIME */
 
           const miningTime =
             escapeHTML(
@@ -659,18 +597,12 @@
             );
 
 
-
-          /* REWARD */
-
           const reward =
             escapeHTML(
               item.reward ||
               "Not specified"
             );
 
-
-
-          /* MINIMUM WITHDRAW */
 
           const minWithdraw =
             escapeHTML(
@@ -679,17 +611,11 @@
             );
 
 
-
-          /* JOIN LINK */
-
           const joinLink =
             safeURL(
               item.join_link
             );
 
-
-
-          /* SCREENSHOT */
 
           const screenshotURL =
             safeURL(
@@ -697,9 +623,7 @@
             );
 
 
-
-          let screenshotHTML =
-            "";
+          let screenshotHTML = "";
 
 
           if (
@@ -729,9 +653,6 @@
 
           }
 
-
-
-          /* CARD */
 
           return `
 
@@ -822,9 +743,7 @@
           `;
 
 
-        }
-
-      ).join("");
+        }).join("");
 
     }
 
@@ -849,7 +768,6 @@
         `;
 
 
-
         const {
           data,
           error
@@ -859,9 +777,6 @@
 
           .select("*");
 
-
-
-        /* SUPABASE ERROR */
 
         if (error) {
 
@@ -875,29 +790,20 @@
         }
 
 
-
-        /* SAVE DATA */
-
         allAirdrops =
           data || [];
 
-
-
-        /* DISPLAY */
 
         displayAirdrops(
           allAirdrops
         );
 
 
-      }
-
-
-      catch (error) {
+      } catch (error) {
 
 
         console.error(
-          "Load airdrops error:",
+          "Load error:",
           error
         );
 
@@ -939,9 +845,6 @@
             .trim();
 
 
-
-        /* SHOW ALL */
-
         if (!query) {
 
           displayAirdrops(
@@ -952,9 +855,6 @@
 
         }
 
-
-
-        /* FILTER */
 
         const filtered =
           allAirdrops.filter(
@@ -976,14 +876,12 @@
               `.toLowerCase();
 
 
-
               return text.includes(
                 query
               );
 
             }
           );
-
 
 
         displayAirdrops(
