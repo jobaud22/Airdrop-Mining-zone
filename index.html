@@ -1,19 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
 
   <title>Airdrop Mining Zone</title>
-  <meta name="description" content="Free Airdrop & Mining Projects">
 
-  <!-- Supabase -->
+  <meta
+    name="description"
+    content="Free Airdrop & Mining Projects"
+  >
+
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
   <!-- Old Ad Unit -->
   <script src="https://pl31571592.profitableratecpmnetwork.com/19/3d/7c/193d7c7412c3023da5f25f650b3ec909.js"></script>
 
+
   <style>
+
     * {
       box-sizing: border-box;
     }
@@ -32,9 +43,6 @@
       color: #ffffff;
     }
 
-    /* =========================
-       HEADER
-    ========================= */
 
     header {
       text-align: center;
@@ -55,9 +63,6 @@
       font-size: 14px;
     }
 
-    /* =========================
-       CONTAINER
-    ========================= */
 
     .container {
       width: 94%;
@@ -65,23 +70,19 @@
       margin: auto;
     }
 
-    /* =========================
-       TOP AD
-    ========================= */
+
+    /* AD BOX */
 
     .ad-box {
       width: 100%;
       min-height: 110px;
       margin: 15px 0 25px;
-
       background: #111820;
       border: 1px solid #202b36;
       border-radius: 12px;
-
       display: flex;
       justify-content: center;
       align-items: center;
-
       overflow: hidden;
     }
 
@@ -89,11 +90,9 @@
       width: 100%;
       max-width: 728px;
       height: 90px;
-
       display: flex;
       justify-content: center;
       align-items: center;
-
       overflow: hidden;
     }
 
@@ -101,25 +100,20 @@
       max-width: none;
     }
 
-    /* =========================
-       ADMIN LOGIN
-    ========================= */
+
+    /* ADMIN LOGIN */
 
     .post-btn {
       display: block;
       width: 100%;
       padding: 15px;
       margin-bottom: 15px;
-
       background: #00d084;
       color: #001b10;
-
       text-decoration: none;
       text-align: center;
-
       font-size: 17px;
       font-weight: bold;
-
       border-radius: 10px;
     }
 
@@ -127,122 +121,18 @@
       background: #00ff99;
     }
 
-    /* =========================
-       SCREENSHOT BOX
-    ========================= */
 
-    .screenshot-box {
-      background: #111820;
-      border: 1px solid #202b36;
-      border-radius: 12px;
-
-      padding: 20px;
-      margin-bottom: 20px;
-    }
-
-    .screenshot-box h2 {
-      margin: 0 0 8px;
-
-      color: #00ff99;
-      font-size: 21px;
-    }
-
-    .screenshot-box p {
-      margin: 0 0 15px;
-
-      color: #aab4bf;
-      font-size: 14px;
-      line-height: 1.5;
-    }
-
-    #screenshotInput {
-      width: 100%;
-
-      padding: 12px;
-      margin-bottom: 15px;
-
-      background: #0b1015;
-      color: white;
-
-      border: 1px solid #293541;
-      border-radius: 8px;
-    }
-
-    #imagePreviewBox {
-      display: none;
-
-      margin-bottom: 15px;
-      text-align: center;
-    }
-
-    #imagePreview {
-      display: block;
-
-      width: 100%;
-      max-width: 600px;
-      max-height: 400px;
-
-      object-fit: contain;
-
-      margin: auto;
-
-      border-radius: 8px;
-      border: 1px solid #293541;
-    }
-
-    #uploadScreenshotBtn {
-      width: 100%;
-
-      padding: 14px;
-
-      background: #00d084;
-      color: #001b10;
-
-      border: 0;
-      border-radius: 8px;
-
-      font-size: 16px;
-      font-weight: bold;
-
-      cursor: pointer;
-    }
-
-    #uploadScreenshotBtn:hover {
-      background: #00ff99;
-    }
-
-    #uploadScreenshotBtn:disabled {
-      opacity: 0.6;
-      cursor: not-allowed;
-    }
-
-    #screenshotMessage {
-      margin-top: 12px;
-
-      text-align: center;
-
-      font-size: 14px;
-      line-height: 1.5;
-    }
-
-    /* =========================
-       SEARCH
-    ========================= */
+    /* SEARCH */
 
     #search {
       width: 100%;
-
       padding: 14px;
       margin-bottom: 20px;
-
       background: #111820;
       color: white;
-
       border: 1px solid #293541;
       border-radius: 10px;
-
       outline: none;
-
       font-size: 15px;
     }
 
@@ -250,85 +140,78 @@
       border-color: #00d084;
     }
 
-    /* =========================
-       AIRDROP LIST
-    ========================= */
+
+    /* AIRDROP LIST */
 
     #airdropList {
       display: grid;
       gap: 15px;
     }
 
-    /* =========================
-       AIRDROP CARD
-    ========================= */
 
     .card {
       background: #111820;
-
       border: 1px solid #202b36;
       border-radius: 12px;
-
       padding: 18px;
     }
 
+
     .card h2 {
       margin: 0 0 10px;
-
       color: #00ff99;
       font-size: 21px;
     }
 
+
+    /* SCREENSHOT */
+
+    .airdrop-screenshot {
+      width: 100%;
+      max-height: 450px;
+      object-fit: contain;
+      display: block;
+      margin: 10px 0 15px;
+      border-radius: 10px;
+      border: 1px solid #293541;
+      background: #0b1015;
+    }
+
+
     .description {
       color: #c5ced7;
-
       line-height: 1.5;
-
       margin-bottom: 15px;
-
       white-space: pre-wrap;
       word-break: break-word;
     }
 
+
     .info {
       display: grid;
-
       gap: 8px;
-
       margin-bottom: 15px;
     }
 
+
     .info div {
       background: #0b1015;
-
       padding: 9px;
-
       border-radius: 7px;
-
       color: #dce4eb;
-
       font-size: 14px;
     }
 
-    /* =========================
-       JOIN BUTTON
-    ========================= */
 
     .join-btn {
       display: block;
       width: 100%;
-
       padding: 12px;
-
       background: #00d084;
       color: #001b10;
-
       text-decoration: none;
-
       text-align: center;
-
       border-radius: 8px;
-
       font-weight: bold;
     }
 
@@ -336,35 +219,21 @@
       background: #00ff99;
     }
 
-    /* =========================
-       EMPTY
-    ========================= */
 
     .empty {
       text-align: center;
-
       color: #8d99a5;
-
       padding: 30px 10px;
     }
 
-    /* =========================
-       FOOTER
-    ========================= */
 
     footer {
       text-align: center;
-
       padding: 30px 10px;
-
       color: #707b86;
-
       font-size: 13px;
     }
 
-    /* =========================
-       MOBILE
-    ========================= */
 
     @media (max-width: 760px) {
 
@@ -385,19 +254,16 @@
     }
 
   </style>
+
 </head>
+
 
 <body>
 
-  <!-- =========================
-       HEADER
-  ========================= -->
 
   <header>
 
-    <h1>
-      🚀 Airdrop Mining Zone
-    </h1>
+    <h1>🚀 Airdrop Mining Zone</h1>
 
     <p>
       Free Airdrop & Mining Projects
@@ -409,22 +275,32 @@
   <main class="container">
 
 
-    <!-- =========================
-         728x90 AD
-    ========================= -->
+    <!-- 728x90 AD -->
 
     <div class="ad-box">
 
       <div class="banner-wrapper">
 
         <script>
+
           atOptions = {
-            'key' : '7b6610d00f3b870fe5ef7fc3670be8af',
-            'format' : 'iframe',
-            'height' : 90,
-            'width' : 728,
-            'params' : {}
+
+            'key':
+              '7b6610d00f3b870fe5ef7fc3670be8af',
+
+            'format':
+              'iframe',
+
+            'height':
+              90,
+
+            'width':
+              728,
+
+            'params': {}
+
           };
+
         </script>
 
         <script
@@ -436,9 +312,7 @@
     </div>
 
 
-    <!-- =========================
-         ADMIN LOGIN
-    ========================= -->
+    <!-- ADMIN LOGIN -->
 
     <a
       class="post-btn"
@@ -448,62 +322,7 @@
     </a>
 
 
-    <!-- =========================
-         SCREENSHOT SUBMIT
-    ========================= -->
-
-    <div class="screenshot-box">
-
-      <h2>
-        📸 Submit Screenshot
-      </h2>
-
-      <p>
-        Complete the task and upload your screenshot here.
-      </p>
-
-
-      <!-- Screenshot Select -->
-
-      <input
-        type="file"
-        id="screenshotInput"
-        accept="image/png,image/jpeg,image/jpg,image/webp"
-      >
-
-
-      <!-- Preview -->
-
-      <div id="imagePreviewBox">
-
-        <img
-          id="imagePreview"
-          alt="Screenshot Preview"
-        >
-
-      </div>
-
-
-      <!-- Submit -->
-
-      <button
-        id="uploadScreenshotBtn"
-        type="button"
-      >
-        📤 SUBMIT SCREENSHOT
-      </button>
-
-
-      <!-- Message -->
-
-      <div id="screenshotMessage"></div>
-
-    </div>
-
-
-    <!-- =========================
-         SEARCH
-    ========================= -->
+    <!-- SEARCH -->
 
     <input
       type="text"
@@ -512,9 +331,7 @@
     >
 
 
-    <!-- =========================
-         AIRDROP LIST
-    ========================= -->
+    <!-- AIRDROP LIST -->
 
     <div id="airdropList">
 
@@ -524,12 +341,9 @@
 
     </div>
 
+
   </main>
 
-
-  <!-- =========================
-       FOOTER
-  ========================= -->
 
   <footer>
     © 2026 Airdrop Mining Zone
@@ -538,15 +352,12 @@
 
   <script>
 
-    /* =========================
-       SUPABASE
-    ========================= */
-
     const SUPABASE_URL =
       "https://zuqcvankzuofzzpdrycq.supabase.co";
 
     const SUPABASE_KEY =
       "sb_publishable_T_q8uZXUsSE2zidrfoYraw_KEqa5G7X";
+
 
     const supabaseClient =
       window.supabase.createClient(
@@ -555,23 +366,17 @@
       );
 
 
-    /* =========================
-       AIRDROP ELEMENTS
-    ========================= */
-
     const list =
       document.getElementById("airdropList");
 
     const search =
       document.getElementById("search");
 
+
     let allAirdrops = [];
 
 
-    /* =========================
-       SECURITY
-    ========================= */
-
+    // Escape HTML
     function escapeHTML(value) {
 
       if (
@@ -582,14 +387,21 @@
       }
 
       return String(value)
+
         .replace(/&/g, "&amp;")
+
         .replace(/</g, "&lt;")
+
         .replace(/>/g, "&gt;")
+
         .replace(/"/g, "&quot;")
+
         .replace(/'/g, "&#039;");
+
     }
 
 
+    // Safe URL
     function safeURL(value) {
 
       if (!value) {
@@ -598,8 +410,7 @@
 
       try {
 
-        const url =
-          new URL(value);
+        const url = new URL(value);
 
         if (
           url.protocol === "http:" ||
@@ -615,13 +426,11 @@
         return "#";
 
       }
+
     }
 
 
-    /* =========================
-       DISPLAY AIRDROPS
-    ========================= */
-
+    // Display airdrops
     function displayAirdrops(items) {
 
       if (
@@ -629,158 +438,165 @@
         items.length === 0
       ) {
 
-        list.innerHTML = `
-          <div class="empty">
+        list.innerHTML =
+          `<div class="empty">
             No airdrops found.
-          </div>
-        `;
+          </div>`;
 
         return;
       }
 
 
-      list.innerHTML =
-        items.map(item => {
+      list.innerHTML = items.map(item => {
 
-          const name =
-            escapeHTML(
-              item.name ||
-              "Unnamed Airdrop"
-            );
-
-
-          const description =
-            escapeHTML(
-              item.description ||
-              "No description available."
-            );
+        const name =
+          escapeHTML(
+            item.name ||
+            "Unnamed Airdrop"
+          );
 
 
-          const miningTime =
-            escapeHTML(
-              item.mining_time ||
-              "Not specified"
-            );
+        const description =
+          escapeHTML(
+            item.description ||
+            "No description available."
+          );
 
 
-          const reward =
-            escapeHTML(
-              item.reward ||
-              "Not specified"
-            );
+        const miningTime =
+          escapeHTML(
+            item.mining_time ||
+            "Not specified"
+          );
 
 
-          const minWithdraw =
-            escapeHTML(
-              item.min_withdraw ||
-              "Not specified"
-            );
+        const reward =
+          escapeHTML(
+            item.reward ||
+            "Not specified"
+          );
 
 
-          const joinLink =
-            safeURL(
-              item.join_link
-            );
+        const minWithdraw =
+          escapeHTML(
+            item.min_withdraw ||
+            "Not specified"
+          );
 
 
-          return `
+        const joinLink =
+          safeURL(item.join_link);
 
-            <div class="card">
 
-              <h2>
-                🚀 ${name}
-              </h2>
+        const screenshotURL =
+          safeURL(item.screenshot_url);
 
-              <div class="description">
-                ${description}
+
+        const screenshotHTML =
+          item.screenshot_url &&
+          screenshotURL !== "#"
+
+          ? `
+            <img
+              class="airdrop-screenshot"
+              src="${screenshotURL}"
+              alt="${name} Screenshot"
+              loading="lazy"
+              onerror="this.style.display='none';"
+            >
+          `
+
+          : "";
+
+
+        return `
+
+          <div class="card">
+
+            <h2>
+              🚀 ${name}
+            </h2>
+
+
+            ${screenshotHTML}
+
+
+            <div class="description">
+              ${description}
+            </div>
+
+
+            <div class="info">
+
+              <div>
+                ⛏️ Mining Time:
+                <strong>
+                  ${miningTime}
+                </strong>
               </div>
 
-              <div class="info">
 
-                <div>
-                  ⛏️ Mining Time:
-                  <strong>
-                    ${miningTime}
-                  </strong>
-                </div>
-
-                <div>
-                  🎁 Reward:
-                  <strong>
-                    ${reward}
-                  </strong>
-                </div>
-
-                <div>
-                  💰 Minimum Withdraw:
-                  <strong>
-                    ${minWithdraw}
-                  </strong>
-                </div>
-
+              <div>
+                🎁 Reward:
+                <strong>
+                  ${reward}
+                </strong>
               </div>
 
 
-              <a
-                class="join-btn"
-                href="${joinLink}"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                JOIN NOW 🚀
-              </a>
+              <div>
+                💰 Minimum Withdraw:
+                <strong>
+                  ${minWithdraw}
+                </strong>
+              </div>
 
             </div>
 
-          `;
 
-        }).join("");
+            <a
+              class="join-btn"
+              href="${joinLink}"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              JOIN NOW 🚀
+            </a>
+
+          </div>
+
+        `;
+
+      }).join("");
 
     }
 
 
-    /* =========================
-       LOAD AIRDROPS
-    ========================= */
-
+    // Load airdrops
     async function loadAirdrops() {
 
       try {
 
-        const response =
-          await fetch(
-            `${SUPABASE_URL}/rest/v1/airdrops?select=*`,
-            {
-              method: "GET",
+        const {
+          data,
+          error
+        } = await supabaseClient
 
-              headers: {
+          .from("airdrops")
 
-                "apikey":
-                  SUPABASE_KEY,
+          .select("*")
 
-                "Authorization":
-                  `Bearer ${SUPABASE_KEY}`
-
-              }
-
-            }
-          );
+          .order("id", {
+            ascending: false
+          });
 
 
-        if (!response.ok) {
-
-          const errorText =
-            await response.text();
-
-          throw new Error(
-            errorText
-          );
-
+        if (error) {
+          throw error;
         }
 
 
-        allAirdrops =
-          await response.json();
+        allAirdrops = data || [];
 
 
         displayAirdrops(
@@ -792,21 +608,17 @@
 
         console.error(error);
 
-        list.innerHTML = `
-          <div class="empty">
+        list.innerHTML =
+          `<div class="empty">
             ❌ Failed to load airdrops.
-          </div>
-        `;
+          </div>`;
 
       }
 
     }
 
 
-    /* =========================
-       SEARCH
-    ========================= */
-
+    // Search
     search.addEventListener(
       "input",
       function() {
@@ -833,11 +645,17 @@
             item => {
 
               const text = `
+
                 ${item.name || ""}
+
                 ${item.description || ""}
+
                 ${item.mining_time || ""}
+
                 ${item.reward || ""}
+
                 ${item.min_withdraw || ""}
+
               `.toLowerCase();
 
 
@@ -857,291 +675,11 @@
     );
 
 
-    /* =========================
-       SCREENSHOT ELEMENTS
-    ========================= */
-
-    const screenshotInput =
-      document.getElementById(
-        "screenshotInput"
-      );
-
-
-    const imagePreviewBox =
-      document.getElementById(
-        "imagePreviewBox"
-      );
-
-
-    const imagePreview =
-      document.getElementById(
-        "imagePreview"
-      );
-
-
-    const uploadScreenshotBtn =
-      document.getElementById(
-        "uploadScreenshotBtn"
-      );
-
-
-    const screenshotMessage =
-      document.getElementById(
-        "screenshotMessage"
-      );
-
-
-    let selectedScreenshot = null;
-
-
-    /* =========================
-       SELECT SCREENSHOT
-    ========================= */
-
-    screenshotInput.addEventListener(
-      "change",
-      function() {
-
-        const file =
-          this.files[0];
-
-
-        if (!file) {
-
-          selectedScreenshot = null;
-
-          imagePreviewBox.style.display =
-            "none";
-
-          return;
-
-        }
-
-
-        /* Image check */
-
-        if (
-          !file.type.startsWith(
-            "image/"
-          )
-        ) {
-
-          screenshotMessage.style.color =
-            "#ff7777";
-
-          screenshotMessage.textContent =
-            "❌ Please select an image.";
-
-          this.value = "";
-
-          selectedScreenshot = null;
-
-          imagePreviewBox.style.display =
-            "none";
-
-          return;
-
-        }
-
-
-        /* 5MB limit */
-
-        if (
-          file.size >
-          5 * 1024 * 1024
-        ) {
-
-          screenshotMessage.style.color =
-            "#ff7777";
-
-          screenshotMessage.textContent =
-            "❌ Image must be smaller than 5 MB.";
-
-          this.value = "";
-
-          selectedScreenshot = null;
-
-          imagePreviewBox.style.display =
-            "none";
-
-          return;
-
-        }
-
-
-        selectedScreenshot =
-          file;
-
-
-        /* Preview */
-
-        const reader =
-          new FileReader();
-
-
-        reader.onload =
-          function(e) {
-
-            imagePreview.src =
-              e.target.result;
-
-            imagePreviewBox.style.display =
-              "block";
-
-          };
-
-
-        reader.readAsDataURL(
-          file
-        );
-
-
-        screenshotMessage.textContent =
-          "";
-
-      }
-    );
-
-
-    /* =========================
-       UPLOAD SCREENSHOT
-    ========================= */
-
-    uploadScreenshotBtn.addEventListener(
-      "click",
-      async function() {
-
-        if (!selectedScreenshot) {
-
-          screenshotMessage.style.color =
-            "#ff7777";
-
-          screenshotMessage.textContent =
-            "❌ Please select a screenshot first.";
-
-          return;
-
-        }
-
-
-        uploadScreenshotBtn.disabled =
-          true;
-
-        uploadScreenshotBtn.textContent =
-          "Uploading...";
-
-
-        screenshotMessage.style.color =
-          "#00ff99";
-
-        screenshotMessage.textContent =
-          "Please wait...";
-
-
-        try {
-
-          const file =
-            selectedScreenshot;
-
-
-          const extension =
-            file.name
-              .split(".")
-              .pop()
-              .toLowerCase();
-
-
-          const randomName =
-            Date.now() +
-            "-" +
-            Math.random()
-              .toString(36)
-              .substring(2, 10) +
-            "." +
-            extension;
-
-
-          const filePath =
-            "submissions/" +
-            randomName;
-
-
-          /* Upload to Supabase */
-
-          const {
-            data,
-            error
-          } =
-            await supabaseClient
-              .storage
-              .from("screenshots")
-              .upload(
-                filePath,
-                file,
-                {
-                  cacheControl: "3600",
-                  upsert: false,
-                  contentType: file.type
-                }
-              );
-
-
-          if (error) {
-            throw error;
-          }
-
-
-          /* Success */
-
-          screenshotMessage.style.color =
-            "#00ff99";
-
-          screenshotMessage.textContent =
-            "✅ Screenshot submitted successfully!";
-
-
-          screenshotInput.value =
-            "";
-
-          selectedScreenshot =
-            null;
-
-          imagePreviewBox.style.display =
-            "none";
-
-
-        } catch (error) {
-
-          console.error(error);
-
-          screenshotMessage.style.color =
-            "#ff7777";
-
-          screenshotMessage.textContent =
-            "❌ Upload failed: " +
-            error.message;
-
-        } finally {
-
-          uploadScreenshotBtn.disabled =
-            false;
-
-          uploadScreenshotBtn.textContent =
-            "📤 SUBMIT SCREENSHOT";
-
-        }
-
-      }
-    );
-
-
-    /* =========================
-       START WEBSITE
-    ========================= */
-
     loadAirdrops();
 
   </script>
 
+
 </body>
+
 </html>
